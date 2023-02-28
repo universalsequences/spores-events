@@ -5,12 +5,21 @@ const networkInfo = {
     chain: ZDKChain.Goerli,
 };
 const API_ENDPOINT = "https://api.zora.co/graphql";
+let apiKey: string | undefined = undefined;
+
 const args = { 
     endPoint:API_ENDPOINT, 
     networks:[networkInfo], 
 };
 
-export const zdk = new ZDK(args) // All arguments are optional
+export const setZoraApiKey = (_apiKey: string) => {
+    apiKey = _apiKey;
+};
+
+export const zdk = () => new ZDK({
+    ... args,
+    apiKey: apiKey
+}) 
 
 export const decodeTokenURI = (uri: string): string => {
     let starter = 'base64,';

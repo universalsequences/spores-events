@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.goerli = exports.SongCreator = exports.SongAttribute = exports.ZporeDropCreated = exports.SongConfigurationStem = exports.NewDefaultSongConfiguration = exports.NewStemType = exports.NewStem = exports.NewSong = exports.EthereumQuery = exports.fetchZporeDrops = exports.fetchZporeDrop = exports.fetchZporeRemixes = void 0;
+exports.goerli = exports.SongCreator = exports.SongAttribute = exports.ZporeDropCreated = exports.SongConfigurationStem = exports.NewDefaultSongConfiguration = exports.NewStemType = exports.NewStem = exports.NewSong = exports.setZoraApiKey = exports.EthereumQuery = exports.fetchZporeDrops = exports.fetchZporeDrop = exports.fetchZporeRemixes = void 0;
 var ZporeRemixes_1 = require("./ZporeRemixes");
 Object.defineProperty(exports, "fetchZporeRemixes", { enumerable: true, get: function () { return ZporeRemixes_1.fetchZporeRemixes; } });
 var ZporeDrops_1 = require("./ZporeDrops");
@@ -8,6 +8,8 @@ Object.defineProperty(exports, "fetchZporeDrop", { enumerable: true, get: functi
 Object.defineProperty(exports, "fetchZporeDrops", { enumerable: true, get: function () { return ZporeDrops_1.fetchZporeDrops; } });
 var EthereumQuery_1 = require("./EthereumQuery");
 Object.defineProperty(exports, "EthereumQuery", { enumerable: true, get: function () { return EthereumQuery_1.EthereumQuery; } });
+var ZDK_1 = require("./ZDK");
+Object.defineProperty(exports, "setZoraApiKey", { enumerable: true, get: function () { return ZDK_1.setZoraApiKey; } });
 var EthereumEvents_1 = require("./EthereumEvents");
 Object.defineProperty(exports, "NewSong", { enumerable: true, get: function () { return EthereumEvents_1.NewSong; } });
 Object.defineProperty(exports, "NewStem", { enumerable: true, get: function () { return EthereumEvents_1.NewStem; } });

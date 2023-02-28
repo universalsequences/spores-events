@@ -23,7 +23,7 @@ const fetchZporeRemixes = (songId, ownerAddress) => __awaiter(void 0, void 0, vo
         drops = [yield (0, ZporeDrops_1.fetchZporeDrop)(songId)];
     }
     let dropAddresses = drops.map(x => x.dropAddress);
-    let results = yield ZDK_1.zdk.tokens({
+    let results = yield (0, ZDK_1.zdk)().tokens({
         where: {
             ownerAddresses: ownerAddress ? [ownerAddress] : undefined,
             collectionAddresses: dropAddresses,

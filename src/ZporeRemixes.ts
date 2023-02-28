@@ -31,7 +31,7 @@ export const fetchZporeRemixes = async (songId?: number, ownerAddress?: Address)
     }
 
     let dropAddresses: string [] = drops.map(x => x.dropAddress);
-    let results = await zdk.tokens({
+    let results = await zdk().tokens({
         where: {
             ownerAddresses: ownerAddress ? [ownerAddress!] : undefined,
             collectionAddresses: dropAddresses,

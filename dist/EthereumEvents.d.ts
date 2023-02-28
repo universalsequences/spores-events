@@ -1,0 +1,12 @@
+import { EthereumEventLog } from './EthereumDataType';
+export declare const SongCreator: EthereumEventLog;
+export declare const NewSong: EthereumEventLog;
+export declare const NewStem: EthereumEventLog;
+export declare const NewDefaultSongConfiguration: EthereumEventLog;
+export declare const SongConfigurationStem: EthereumEventLog;
+export declare const NewStemType: EthereumEventLog;
+export declare const StemDeleted: EthereumEventLog;
+export declare const SongDeleted: EthereumEventLog;
+export declare const StemAttribute: EthereumEventLog;
+export declare const SongAttribute: EthereumEventLog;
+export declare const ZporeDropCreated: EthereumEventLog;

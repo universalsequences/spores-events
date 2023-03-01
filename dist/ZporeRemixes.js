@@ -23,35 +23,52 @@ const fetchZporeRemixes = (songId, ownerAddress) => __awaiter(void 0, void 0, vo
         drops = [yield (0, ZporeDrops_1.fetchZporeDrop)(songId)];
     }
     let dropAddresses = drops.map(x => x.dropAddress);
-    let results = yield (0, ZDK_1.zdk)().tokens({
-        where: {
-            ownerAddresses: ownerAddress ? [ownerAddress] : undefined,
-            collectionAddresses: dropAddresses,
-        },
-        includeFullDetails: true
-    });
-    let tokens = results.tokens.nodes.map(x => x.token);
-    let remixes = tokens.map(x => (Object.assign(Object.assign({}, x), { metadata: x.metadata || (x.tokenUrl ? (0, ZDK_1.decodeTokenURI)(x.tokenUrl) : undefined) }))).map(x => ({
-        name: x.name,
-        songId: drops.find(drop => drop.dropAddress == x.collectionAddress).songId,
-        tokenContract: {
-            name: x.tokenContract.name
-        },
-        metadata: x.metadata,
-        attributes: (0, TokenAttributes_1.getTokenAttributes)(x.metadata.attributes),
-        tokenId: parseInt(x.tokenId),
-        creator: x.mintInfo.toAddress,
-        mintInfo: {
-            toAddress: x.mintInfo.toAddress,
-            mintContext: {
-                blockTimestamp: x.mintInfo.mintContext.blockTimestamp
-            }
-        },
-    }));
+    let hasNext = true;
+    let entireResponse = [];
+    let endCursor;
+    while (hasNext) {
+        let pagination = {
+            after: endCursor
+        };
+        let results = yield (0, ZDK_1.zdk)().tokens({
+            where: {
+                ownerAddresses: ownerAddress ? [ownerAddress] : undefined,
+                collectionAddresses: dropAddresses,
+            },
+            includeFullDetails: true,
+            pagination: pagination
+        });
+        let tokens = results.tokens.nodes.map(x => x.token);
+        if (results.tokens.pageInfo.hasNextPage) {
+            endCursor = results.tokens.pageInfo.endCursor;
+            hasNext = true;
+        }
+        else {
+            hasNext = false;
+        }
+        let remixes = tokens.map(x => (Object.assign(Object.assign({}, x), { metadata: x.metadata || (x.tokenUrl ? (0, ZDK_1.decodeTokenURI)(x.tokenUrl) : undefined) }))).map(x => ({
+            name: x.name,
+            songId: drops.find(drop => drop.dropAddress == x.collectionAddress).songId,
+            tokenContract: {
+                name: x.tokenContract.name
+            },
+            metadata: x.metadata,
+            attributes: (0, TokenAttributes_1.getTokenAttributes)(x.metadata.attributes),
+            tokenId: parseInt(x.tokenId),
+            creator: x.mintInfo.toAddress,
+            mintInfo: {
+                toAddress: x.mintInfo.toAddress,
+                mintContext: {
+                    blockTimestamp: x.mintInfo.mintContext.blockTimestamp
+                }
+            },
+        }));
+        entireResponse = [...entireResponse, ...remixes];
+    }
     if (ownerAddress) {
-        remixes.sort((a, b) => new Date(a.mintInfo.mintContext.blockTimestamp).getTime() -
+        entireResponse.sort((a, b) => new Date(a.mintInfo.mintContext.blockTimestamp).getTime() -
             new Date(b.mintInfo.mintContext.blockTimestamp).getTime());
     }
-    return remixes;
+    return entireResponse;
 });
 exports.fetchZporeRemixes = fetchZporeRemixes;

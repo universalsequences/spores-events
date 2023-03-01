@@ -21,7 +21,7 @@ export interface ZporeRemix {
     metadata?: any
 };
 
-export const fetchZporeRemixes = async (songId?: number, ownerAddress?: Address): Promise<ZporeRemix[]> => {
+export const fetchZporeRemixes = async (songId?: number, ownerAddress?: Address, limit: number = 100): Promise<ZporeRemix[]> => {
     let drops: ZporeDrop [] = [];
     if (typeof songId === "undefined") {
         drops = await fetchZporeDrops();
@@ -34,7 +34,7 @@ export const fetchZporeRemixes = async (songId?: number, ownerAddress?: Address)
     let entireResponse: ZporeRemix [] = [];
     let endCursor: string | undefined;
 
-    while (hasNext) {
+    while (hasNext && entireResponse.length < limit) {
         let pagination = {
             after: endCursor
         };

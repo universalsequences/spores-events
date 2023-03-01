@@ -16,5 +16,5 @@ export interface ZporeRemix {
     };
     metadata?: any;
 }
-export declare const fetchZporeRemixes: (songId?: number | undefined, ownerAddress?: string | undefined) => Promise<ZporeRemix[]>;
+export declare const fetchZporeRemixes: (songId?: number | undefined, ownerAddress?: string | undefined, limit?: number) => Promise<ZporeRemix[]>;
 export {};

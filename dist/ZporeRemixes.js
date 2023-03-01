@@ -14,7 +14,7 @@ const ZporeDrops_1 = require("./ZporeDrops");
 const ZDK_1 = require("./ZDK");
 const TokenAttributes_1 = require("./TokenAttributes");
 ;
-const fetchZporeRemixes = (songId, ownerAddress) => __awaiter(void 0, void 0, void 0, function* () {
+const fetchZporeRemixes = (songId, ownerAddress, limit = 100) => __awaiter(void 0, void 0, void 0, function* () {
     let drops = [];
     if (typeof songId === "undefined") {
         drops = yield (0, ZporeDrops_1.fetchZporeDrops)();
@@ -26,7 +26,7 @@ const fetchZporeRemixes = (songId, ownerAddress) => __awaiter(void 0, void 0, vo
     let hasNext = true;
     let entireResponse = [];
     let endCursor;
-    while (hasNext) {
+    while (hasNext && entireResponse.length < limit) {
         let pagination = {
             after: endCursor
         };

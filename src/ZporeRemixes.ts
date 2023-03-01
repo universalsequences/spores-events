@@ -1,6 +1,7 @@
 import {fetchZporeDrop, ZporeDrop, fetchZporeDrops} from './ZporeDrops'
 import {zdk, decodeTokenURI} from './ZDK';
 import {getTokenAttributes} from './TokenAttributes'
+import { SortDirection, TokenSortKey } from "@zoralabs/zdk/dist/queries/queries-sdk";
 type Address = string;
 type BlockTimestamp = string;
 
@@ -42,6 +43,10 @@ export const fetchZporeRemixes = async (songId?: number, ownerAddress?: Address,
             where: {
                 ownerAddresses: ownerAddress ? [ownerAddress!] : undefined,
                 collectionAddresses: dropAddresses,
+            },
+            sort: {
+                sortKey: TokenSortKey.Minted,
+                sortDirection: SortDirection.Desc
             },
             includeFullDetails: true,
             pagination: pagination

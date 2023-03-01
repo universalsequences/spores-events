@@ -21,3 +21,12 @@ Object.defineProperty(exports, "SongAttribute", { enumerable: true, get: functio
 Object.defineProperty(exports, "SongCreator", { enumerable: true, get: function () { return EthereumEvents_1.SongCreator; } });
 var Contracts_1 = require("./Contracts");
 Object.defineProperty(exports, "goerli", { enumerable: true, get: function () { return Contracts_1.goerli; } });
+/*
+const test = async () => {
+    console.log((await fetchZporeRemixes(undefined, undefined, 100)).map(x => x.mintInfo.mintContext.blockTimestamp));
+};
+
+
+test();
+
+*/

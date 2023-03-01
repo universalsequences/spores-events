@@ -15,3 +15,14 @@ export {
 } from './EthereumEvents';
 export {goerli} from './Contracts';
 
+import { fetchZporeRemixes } from './ZporeRemixes';
+
+/*
+const test = async () => {
+    console.log((await fetchZporeRemixes(undefined, undefined, 100)).map(x => x.mintInfo.mintContext.blockTimestamp));
+};
+
+
+test();
+
+*/

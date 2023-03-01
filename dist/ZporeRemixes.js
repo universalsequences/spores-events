@@ -13,6 +13,7 @@ exports.fetchZporeRemixes = void 0;
 const ZporeDrops_1 = require("./ZporeDrops");
 const ZDK_1 = require("./ZDK");
 const TokenAttributes_1 = require("./TokenAttributes");
+const queries_sdk_1 = require("@zoralabs/zdk/dist/queries/queries-sdk");
 ;
 const fetchZporeRemixes = (songId, ownerAddress, limit = 100) => __awaiter(void 0, void 0, void 0, function* () {
     let drops = [];
@@ -34,6 +35,10 @@ const fetchZporeRemixes = (songId, ownerAddress, limit = 100) => __awaiter(void 
             where: {
                 ownerAddresses: ownerAddress ? [ownerAddress] : undefined,
                 collectionAddresses: dropAddresses,
+            },
+            sort: {
+                sortKey: queries_sdk_1.TokenSortKey.Minted,
+                sortDirection: queries_sdk_1.SortDirection.Desc
             },
             includeFullDetails: true,
             pagination: pagination

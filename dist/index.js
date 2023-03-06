@@ -1,11 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.goerli = exports.SongCreator = exports.SongAttribute = exports.ZporeDropCreated = exports.SongConfigurationStem = exports.NewDefaultSongConfiguration = exports.NewStemType = exports.NewStem = exports.NewSong = exports.setZoraApiKey = exports.EthereumQuery = exports.fetchZporeDrops = exports.fetchZporeDrop = exports.fetchZporeRemixes = void 0;
+exports.goerli = exports.SongCreator = exports.SongAttribute = exports.ZporeDropCreated = exports.SongConfigurationStem = exports.NewDefaultSongConfiguration = exports.NewStemType = exports.NewStem = exports.NewSong = exports.setZoraApiKey = exports.EthereumQuery = exports.fetchSongsMetadata = exports.fetchSongAttributes = exports.fetchZporeDrops = exports.fetchZporeDrop = exports.fetchZporeRemixes = void 0;
 var ZporeRemixes_1 = require("./ZporeRemixes");
 Object.defineProperty(exports, "fetchZporeRemixes", { enumerable: true, get: function () { return ZporeRemixes_1.fetchZporeRemixes; } });
 var ZporeDrops_1 = require("./ZporeDrops");
 Object.defineProperty(exports, "fetchZporeDrop", { enumerable: true, get: function () { return ZporeDrops_1.fetchZporeDrop; } });
 Object.defineProperty(exports, "fetchZporeDrops", { enumerable: true, get: function () { return ZporeDrops_1.fetchZporeDrops; } });
+var ZporeSongs_1 = require("./ZporeSongs");
+Object.defineProperty(exports, "fetchSongAttributes", { enumerable: true, get: function () { return ZporeSongs_1.fetchSongAttributes; } });
+Object.defineProperty(exports, "fetchSongsMetadata", { enumerable: true, get: function () { return ZporeSongs_1.fetchSongsMetadata; } });
 var EthereumQuery_1 = require("./EthereumQuery");
 Object.defineProperty(exports, "EthereumQuery", { enumerable: true, get: function () { return EthereumQuery_1.EthereumQuery; } });
 var ZDK_1 = require("./ZDK");

@@ -19,7 +19,12 @@ export interface ZporeRemix {
             blockTimestamp: BlockTimestamp;
         }
     }
-    metadata?: any
+    metadata?: any,
+    attributes?: RemixAttributes;
+};
+
+export type RemixAttributes = {
+    [field: string]: number | string
 };
 
 export const fetchZporeRemixes = async (songId?: number, ownerAddress?: Address, limit: number = 100): Promise<ZporeRemix[]> => {
